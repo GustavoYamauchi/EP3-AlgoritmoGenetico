@@ -1,18 +1,22 @@
 import pandas as pd
 from utils import *
 from geneticAlgorithm import GeneticAlgorithm
+from population import Population
 
 cities = createCities()
 linkTravels(cities)
+initialPopulation = Population([])
+initialPopulation.generate(10, cities)
 
-initialPopulation = createPopulation(cities)
-geneticAlgorithm = GeneticAlgorithm(initialPopulation)
-geneticAlgorithm.letsBora()
+geneticAlgorithm = GeneticAlgorithm(initialPopulation, 10000)
+individual, generation, fitness = geneticAlgorithm.letsBora()
 
-# print(f"population {len(population)}")
-# for ind in population:
-# 	print(f"ind {len(ind)}")
-# 	[print(f"\t{travel.origin.name, travel.destiny.name}") for travel in ind]
+print(f"indivíduo: {individual}, geração: {generation}, fitness: {fitness}")
+
+# print(f"population {len(initialPopulation.individuals)}")
+# for ind in initialPopulation.individuals:
+# 	print(f"ind {len(ind.vars)}")
+# 	[print(f"\t{travel.origin.name, travel.destiny.name}") for travel in ind.vars]
 
 # for city in cities.values():
 # 	print('------------------------------------------------------------------------')
@@ -21,6 +25,3 @@ geneticAlgorithm.letsBora()
 # 	print(f"Travels {len(city.travels)}")
 # 	[print(f"\t{travel}") for travel in city.travels]
 # 	print('------------------------------------------------------------------------')
-
-# cidades = createCities()
-# travles = createTravles(cidades)
