@@ -1,27 +1,14 @@
-import pandas as pd
 from utils import *
+from random import seed
 from geneticAlgorithm import GeneticAlgorithm
 from population import Population
 
-cities = createCities()
-linkTravels(cities)
+seed()
+
 initialPopulation = Population([])
-initialPopulation.generate(10, cities)
+initialPopulation.generate(10)
 
-geneticAlgorithm = GeneticAlgorithm(initialPopulation, 10000)
-individual, generation, fitness = geneticAlgorithm.letsBora()
+geneticAlgorithm = GeneticAlgorithm(initialPopulation, 70000)
+individual, generation, fitness, tempoTotal, pesoTotal = geneticAlgorithm.letsBora()
 
-print(f"indivíduo: {individual}, geração: {generation}, fitness: {fitness}")
-
-# print(f"population {len(initialPopulation.individuals)}")
-# for ind in initialPopulation.individuals:
-# 	print(f"ind {len(ind.vars)}")
-# 	[print(f"\t{travel.origin.name, travel.destiny.name}") for travel in ind.vars]
-
-# for city in cities.values():
-# 	print('------------------------------------------------------------------------')
-# 	print(f"City -> {city.name}")
-# 	print(f"Item -> {city.item}")
-# 	print(f"Travels {len(city.travels)}")
-# 	[print(f"\t{travel}") for travel in city.travels]
-# 	print('------------------------------------------------------------------------')
+print(f"indivíduo: {individual}, geração: {generation}, fitness: {fitness}, tempo total: {tempoTotal}, pesoTotal: {pesoTotal}")

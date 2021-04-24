@@ -1,20 +1,20 @@
 from individual import Individual
 from random import sample
+from data import Data
 
 class Population:
 	def __init__(self, individuals):
 		self.individuals = individuals
 		
-	def generate(self, size, cities):
+	def generate(self, size):
 		for _ in range(size):
-			ind = Individual([])
-			ind.generate(cities)
+			individual = Individual([])
+			individual.generate()
 
-			self.individuals.insert(len(self.individuals), ind)
+			self.individuals.append(individual)
 
 	def sort(self):
-		self.individuals = sorted(self.individuals, key=lambda individual: individual.fitness(), reverse=True)
+		self.individuals = sorted(self.individuals, key=lambda individual: individual.fitness()[0], reverse=True)
 	
 	def select(self):
-		selectedIndividuals = sample(self.individuals, k=2)
-		return selectedIndividuals
+		return sample(self.individuals, k=2)
